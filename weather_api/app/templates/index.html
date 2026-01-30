@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather |Weather Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   
 </head>
@@ -53,35 +58,35 @@
           <div class="detail-item">
             <i class="fas fa-wind"></i>
             <div>
-              <div class="detail-value">{{Speed}}m/s</div>
+              <div class="detail-value">{{speed}}m/s</div>
               <div class="detail-label">Wind Speed</div>
             </div>
           </div>
           <div class="detail-item">
             <i class="fas fa-tint"></i>
             <div>
-              <div class="detail-value">{{Humidity}}%</div>
+              <div class="detail-value">{{humidity}}%</div>
               <div class="detail-label">Humidity</div>
             </div>
           </div>
           <div class="detail-item">
             <i class="fas fa-compress-alt"></i>
             <div>
-              <div class="detail-value">{{Pressure}} hPa</div>
+              <div class="detail-value">{{pressure}} hPa</div>
               <div class="detail-label">Pressure</div>
             </div>
           </div>
           <div class="detail-item">
             <i class="fas fa-eye"></i>
             <div>
-              <div class="detail-value"> {{Visibility}}km</div>
+              <div class="detail-value"> {{visibility}}km</div>
               <div class="detail-label">Visibility</div>
             </div>
           </div>
         </div>
       </div>
       <div class="weather-secondary">
-<img src="https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80" alt="Weather Illustration" style="width: 100%; border-radius: 10px;">      </div>
+<img src="{{img}}" alt="Weather Illustration" style="width: 100%; border-radius: 10px;"></div>
     </section>
 
     <!-- Stats Section -->
@@ -158,7 +163,14 @@
     </footer>
   </div>
 
-
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alertify.set('notifier','position', 'top-center');
+      alertify.error('{{ message }}');
+    </script>
+  {% endfor %}
+{% endif %}
 
 
 
